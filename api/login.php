@@ -1,6 +1,8 @@
 <?php
 require 'vendor/autoload.php';
 
+error_reporting(E_ERROR | E_PARSE);
+
 // Connect to MongoDB Atlas
 $mongoClient = new MongoDB\Client("mongodb+srv://Payroll:Payroll2023@payroll.hzvfjqq.mongodb.net/payroll_app");
 
@@ -20,7 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($user) {
         // Successful login, set session variables or redirect to a protected area
-        header("Location: ../home/index.html");
+      
+
+        echo "Successfully log in!";
+        echo '<br>';
+        echo '<a href="../home/index.html">Go Back</a>';
         
     } else {
         // Invalid login, display an error message
