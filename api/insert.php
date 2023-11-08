@@ -2,6 +2,8 @@
 // Include MongoDB PHP library
 require 'vendor/autoload.php';
 
+error_reporting(E_ERROR | E_PARSE);
+
 
 // Set up MongoDB connection
 $client = new MongoDB\Client('mongodb+srv://Payroll:Payroll2023@payroll.hzvfjqq.mongodb.net/payroll_app');
