@@ -1,5 +1,5 @@
 <?php
-require '../../vendor/autoload.php';
+require 'vendor/autoload.php';
 
 error_reporting(E_ERROR | E_PARSE);
 
