@@ -44,7 +44,7 @@ try {
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            background-image: url('a.jpg');
+            background-image: url('../a.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
