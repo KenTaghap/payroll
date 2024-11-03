@@ -4,11 +4,11 @@ require 'vendor/autoload.php';
 error_reporting(E_ERROR | E_PARSE);
 
 // Connect to MongoDB Atlas
-$mongoClient = new MongoDB\Client("mongodb+srv://Payroll:Payroll2023@payroll.hzvfjqq.mongodb.net/payroll_app");
+$mongoClient = new MongoDB\Client("mongodb+srv://glycerasiado17:glycerasiado17@cluster0.s9v6t.mongodb.net/admin_login");
 
 // Select the database and collection
-$database = $mongoClient->payroll_app;
-$collection = $database->people;
+$database = $mongoClient->admin_login;
+$collection = $database->users;
 
 $errorMsg = ""; // Initialize an error message variable
 
