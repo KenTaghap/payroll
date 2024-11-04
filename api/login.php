@@ -31,28 +31,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container d-flex align-items-center justify-content-center min-vh-100">
-        <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
-            <h3 class="text-center mb-4">Login</h3>
+    <div class="container mt-5 d-flex align-items-center justify-content-center">
+        <div class="card text-center p-4 shadow" style="max-width: 400px; width: 100%;">
 
             <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
                 <?php if ($user): ?>
-                    <div class="alert alert-success text-center">
-                        Successfully logged in!
-                    </div>
-                    <div class="text-center">
-                        <a href="../home/index.html" class="btn btn-primary mt-3">Go to Home</a>
-                    </div>
+                    <!-- Success message -->
+                    <div class="alert alert-success">Successfully logged in!</div>
+                    <a href="../home/index.html" class="btn btn-primary mt-3">Go to Home</a>
                 <?php else: ?>
-                    <div class="alert alert-danger text-center">
-                        Invalid username or password.
-                    </div>
-                    <div class="text-center">
-                        <a href="../index.html" class="btn btn-secondary mt-3">Go Back</a>
-                    </div>
+                    <!-- Error message -->
+                    <div class="alert alert-danger">Invalid username or password.</div>
+                    <a href="../index.html" class="btn btn-secondary mt-3">Go Back</a>
                 <?php endif; ?>
-            <?php else: ?>  
             <?php endif; ?>
+            
         </div>
     </div>
 
