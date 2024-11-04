@@ -1,58 +1,50 @@
 <!DOCTYPE html>
-<!-- Coding by CodingLab || www.codinglabweb.com -->
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payroll</title>
     <link rel="stylesheet" href="style.css" />
-    <!-- Unicons -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
-  </head>
-  <body>
-     <!-- Header -->
+</head>
+<body>
     <header class="header">
-      <nav class="nav">
-        <button class="button" id="form-open">Login</button> 
-      </nav>
-      <nav class="nav">
-        <a href="#" class="nav_logo">Library System</a>
-      </nav>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <nav class="nav">
-        <img src="home/images/experience-img.jpg" width="350" height="300">
-      </nav>
+        <nav class="nav">
+            <button class="button" id="form-open">Login</button>
+        </nav>
+        <nav class="nav">
+            <a href="#" class="nav_logo">Library System</a>
+        </nav>
     </header>
 
-    <!-- Home -->
     <section class="home">
-      <div class="form_container">
-        <i class="uil uil-times form_close"></i>
-        <!-- Login From -->
-        <div class="form login_form">
-          <form action="api/login.php" method="POST">
-            <h2>Login</h2>
-            <div class="input_box">
-              <input type="text" name="username" id="username" placeholder="Enter your username" required />
-              <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-              <input type="password" name="password" id="password" placeholder="Enter your password" required />
-              <i class="uil uil-lock password"></i>
-              <i class="uil uil-eye-slash pw_hide"></i>
-            </div>
-            <button class="button">Login Now</button>
-          </form>
-        </div>
+        <div class="form_container">
+            <i class="uil uil-times form_close"></i>
+            <div class="form login_form">
+                <form action="login.php" method="POST">
+                    <h2>Login</h2>
+                    
+                    <!-- Display error message if redirected with an error -->
+                    <?php if (isset($_GET['error'])): ?>
+                        <p style="color: red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
+                    <?php endif; ?>
 
-       
+                    <div class="input_box">
+                        <input type="text" name="username" id="username" placeholder="Enter your username" required />
+                        <i class="uil uil-envelope-alt email"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" name="password" id="password" placeholder="Enter your password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+                    <button type="submit" class="button">Login Now</button>
+                </form>
+            </div>
+        </div>
     </section>
+
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
