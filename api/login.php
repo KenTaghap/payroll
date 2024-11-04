@@ -29,11 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($user) {
         // Redirect to the dashboard on successful login
-        header("Location: dashboard.php");
+        header("Location: ../home/index.html");
         exit();
     } else {
         // Redirect back to the HTML page with an error message
-        header("Location: index.html?error=Invalid+username+or+password");
+        header("Location: ../index.html?error=Invalid+username+or+password");
         exit();
     }
 }
