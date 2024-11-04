@@ -24,12 +24,9 @@
             <div class="form login_form">
                 <form action="api/login.php" method="POST">
                     <h2>Login</h2>
-                    
-                    <!-- Display error message if redirected with an error -->
-                    <?php if (isset($_GET['error'])): ?>
-                        <p style="color: red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
+                    <?php if ($errorMsg): ?>
+                        <p style="color: red;"><?php echo $errorMsg; ?></p>
                     <?php endif; ?>
-
                     <div class="input_box">
                         <input type="text" name="username" id="username" placeholder="Enter your username" required />
                         <i class="uil uil-envelope-alt email"></i>
@@ -44,7 +41,6 @@
             </div>
         </div>
     </section>
-
     <script src="script.js"></script>
 </body>
 </html>
