@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         Invalid username or password.
                     </div>
                     <div class="text-center">
-                        <a href="../index.html" class="btn btn-secondary mt-3">Go Back</a>
+                        <a href="login.php" class="btn btn-secondary mt-3">Go Back</a>
                     </div>
                 <?php endif; ?>
             <?php else: ?>
