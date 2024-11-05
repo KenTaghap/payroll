@@ -39,7 +39,17 @@
               <i class="uil uil-lock password"></i>
               <i class="uil uil-eye-slash pw_hide"></i>
             </div>
-            <button class="button">Login Now</button>
+            <button class="button"  onclick="sendName()">Login Now</button>
+            <script>
+                  function sendName() {
+                      // Get the value entered in the textbox
+                      var name = document.getElementById("Username").value;
+          
+                      // Use localStorage to store the name
+                      localStorage.setItem("Username", name);
+            document.cookie = `Username=${name}`;
+                  }
+              </script>
           </form>
         </div>
 
