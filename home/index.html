@@ -210,7 +210,18 @@
     <!-- Start Footer  -->
     <footer>
         <div class="footer-main">
-            
+            <center>
+            <h1 style="color:white;">Welcome, <span id="displayName"></span>!</h1>
+            <script>
+                // Retrieve the name from localStorage
+                var name = localStorage.getItem("Username");
+        
+                // Display the name on page2.html
+                if (name) {
+                    document.getElementById("displayName").textContent = name;
+                }
+            </script>
+             </center> 
             <div class="container">
 				<hr>
                 <div class="row">
@@ -219,12 +230,12 @@
                         <div class="footer-link">
                             
                             <h4>Library Management System</h4>
-                            <ul>
-                  <li><a href="">Adrian Luis SanAgustin</a></li>
-                  <li><a href="">Cyrus Jake Quilala</a></li>
-                  <li><a href="">Glycer Asiado</a></li>
-                  <li><a href="">Jay Joven</a></li>
-                  <li><a href="">Josua Tambot</a></li>
+                           <ul>
+                  <li><a href="https://www.facebook.com/profile.php?id=100091567043527&mibextid=ZbWKwL">Adrian Luis SanAgustin</a></li>
+                  <li><a href="https://www.facebook.com/cyrusjake.quilala/">Cyrus Jake Quilala</a></li>
+                  <li><a href="https://www.facebook.com/glycerasiado?mibextid=ZbWKwL">Glycer Asiado</a></li>
+                  <li><a href="https://www.facebook.com/profile.php?id=100008698307577&mibextid=ZbWKwL">Jay Joven</a></li>
+                  <li><a href="https://www.facebook.com/neiljoshuadacanaytambot?mibextid=ZbWKwL">Josua Tambot</a></li>
                             </ul>
                         </div>
                     </div>
