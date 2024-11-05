@@ -153,7 +153,7 @@ foreach ($cursor as $document) {
 </head>
 <body>
     <div class="container">
-        <h1>Product List</h1>
+        <h1>View Books</h1>
         
         <!-- Search form -->
         <form action="" method="GET">
