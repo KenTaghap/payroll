@@ -19,7 +19,7 @@ try {
     $collection = $client->admin_login->users; // Replace with your database and collection names
 
     if (isset($_POST['username'])) {
-        $Username = $_POST['username'];
+        $username = $_POST['username'];
 
         $filter = ['username' => $username];
         $userInfo = $collection->findOne($filter);
