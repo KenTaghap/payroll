@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
                 <?php if ($user): ?>
                     <!-- Success message -->
-                    <div class="alert alert-success">Successfully Registered in!</div>
+                    <div class="alert alert-success">Successfully Registered!</div>
                     <a href="../index.html" class="btn btn-primary mt-3">Go to Home</a>
                 <?php else: ?>
                     <!-- Error message -->
