@@ -6,19 +6,18 @@ error_reporting(E_ERROR | E_PARSE);
 
 
 // Set up MongoDB connection
-$client = new MongoDB\Client('mongodb+srv://Payroll:Payroll2023@payroll.hzvfjqq.mongodb.net/payroll_app');
-$database = $client->selectDatabase('payroll_app');
-$collection = $database->selectCollection('people');
+$client = new MongoDB\Client('mongodb+srv://glycerasiado17:glycerasiado17@cluster0.s9v6t.mongodb.net/admin_login');
+$database = $client->selectDatabase('admin_login');
+$collection = $database->selectCollection('users');
 
 // Process form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST["username"];
+	$id = $_POST["id"];
+    $name = $_POST["name"];
+	$section = $_POST["section"];
+    $number = $_POST["number"];
+	 $username = $_POST["username"];
 	$password = $_POST["password"];
-    $fullname = $_POST["fullname"];
-	$age = $_POST["age"];
-	$address = $_POST["address"];
-    $cnumber = $_POST["cnumber"];
-	$email = $_POST["email"];
 
     // Check if username already exists
     $existingUser = $collection->findOne(['username' => $username]);
@@ -27,13 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Insert new user into MongoDB
         $newUser = [
-            'username' => $username,
-			'password' => $password,
-            'fullname' => $fullname,
-			'age' => $age,
-			'address' => $address,
-            'cnumber' => $cnumber,
-			'email' => $email,
+		'id' => $id,
+            'name' => $name,
+	'section' => $section,
+            'contact' => $number,
+	'username' => $username,
+		'password' => $password,		
             
 
         ];
