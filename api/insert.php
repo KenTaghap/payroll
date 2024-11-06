@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php if ($user): ?>
                     <!-- Success message -->
                     <div class="alert alert-success">Successfully Registered in!</div>
-                    <a href="../home/index.html" class="btn btn-primary mt-3">Go to Home</a>
+                    <a href="../index.html" class="btn btn-primary mt-3">Go to Home</a>
                 <?php else: ?>
                     <!-- Error message -->
                     <div class="alert alert-danger">cannot saved! Something Error or Must be have already Account.</div>
