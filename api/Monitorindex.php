@@ -35,6 +35,7 @@ foreach ($cursor as $document) {
         'bookid' => $document->bookid,
         'booktitle' => $document->booktitle,
         'student' => $document->student,
+        'exp' => $document->exp,
         'borrowed' => $document->borrowed,
       
     ];
@@ -42,17 +43,13 @@ foreach ($cursor as $document) {
 
 ?>
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>Farmers Monitor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <style>
-        /* Your existing CSS styles */
         body {
             font-family: Arial, sans-serif;
             background-image: url('../home/Monitor/images/1.jpg');
@@ -68,7 +65,7 @@ foreach ($cursor as $document) {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
         }
 
@@ -110,27 +107,29 @@ foreach ($cursor as $document) {
         li.product-item {
             border: 2px solid white;
             margin-bottom: 20px;
-            padding: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
             display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .product-image {
-            max-width: 100px;
-            margin-right: 20px;
-            margin-bottom: 10px;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .product-details {
-            margin-bottom: 10px;
             display: flex;
-            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 5px 0;
         }
 
-        .product-details span {
+        .product-details span:first-child {
             font-weight: bold;
+            flex: 1;
+        }
+
+        .product-info {
+            flex: 2;
+            text-align: left;
         }
 
         button {
@@ -143,6 +142,7 @@ foreach ($cursor as $document) {
             margin: 20px auto;
             background-color: #4CAF50;
             color: white;
+            text-align: center;
         }
 
         button a {
@@ -154,47 +154,40 @@ foreach ($cursor as $document) {
 <body>
     <div class="container">
         <h1>View Books</h1>
-        
+
         <!-- Search form -->
         <form action="" method="GET">
             <label for="search">Search by Student-ID:</label>
             <input type="text" id="search" name="search" placeholder="Enter student id" value="<?php echo htmlspecialchars($searchTerm); ?>">
             <input type="submit" value="Search">
         </form>
-        
+
         <ul class="product-list">
             <?php foreach ($productData as $product) : ?>
                 <li class="product-item">
                     <div class="product-details">
                         <span>StudentID:</span>
-                        &nbsp;&nbsp;
                         <span class="product-info"><?php echo $product['studentid']; ?></span>
                     </div>
-                    
                     <div class="product-details">
                         <span>BookID:</span>
-                        &nbsp;&nbsp;
                         <span class="product-info"><?php echo $product['bookid']; ?></span>
                     </div>
                     <div class="product-details">
                         <span>Book Title:</span>
-                        &nbsp;&nbsp;
                         <span class="product-info"><?php echo $product['booktitle']; ?></span>
                     </div>
                     <div class="product-details">
                         <span>Name:</span>
-                        &nbsp;&nbsp;
                         <span class="product-info"><?php echo $product['student']; ?></span>
                     </div>
                     <div class="product-details">
                         <span>Borrowed:</span>
-                        &nbsp;&nbsp;
                         <span class="product-info"><?php echo $product['borrowed']; ?></span>
                     </div>
                     <div class="product-details">
                         <span>Expiry:</span>
-                        &nbsp;&nbsp;
-                        <span class="product-info"> - </span>
+                        <span class="product-info"><?php echo $product['exp']; ?></span>
                     </div>
                 </li>
             <?php endforeach; ?>
