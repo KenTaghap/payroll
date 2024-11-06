@@ -10,6 +10,8 @@ $client = new MongoDB\Client('mongodb+srv://glycerasiado17:glycerasiado17@cluste
 $database = $client->selectDatabase('admin_login');
 $collection = $database->selectCollection('users');
 
+$errorMsg = ""; // Initialize an error message variable
+
 // Process form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$id = $_POST["id"];
@@ -19,11 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	 $username = $_POST["username"];
 	$password = $_POST["password"];
 
-    // Check if username already exists
-    $existingUser = $collection->findOne(['username' => $username]);
-    if ($existingUser) {
-        echo "Username already exists.";
-    } else {
+    
         // Insert new user into MongoDB
         $newUser = [
 		'id' => $id,
@@ -35,12 +33,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
 
         ];
-        $collection->insertOne($newUser);
-        echo "Registration successful!";
-    }
+        $user = $collection->insertOne($newUser);
 }
 
 
 
 ?>
-<div id="center_button"><button onclick="location.href='../index.html'">Back to Home</button></div>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rrgister</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5 d-flex align-items-center justify-content-center">
+        <div class="card text-center p-4 shadow" style="max-width: 400px; width: 100%;">
+
+            <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
+                <?php if ($user): ?>
+                    <!-- Success message -->
+                    <div class="alert alert-success">Successfully Registered in!</div>
+                    <a href="../home/index.html" class="btn btn-primary mt-3">Go to Home</a>
+                <?php else: ?>
+                    <!-- Error message -->
+                    <div class="alert alert-danger">cannot saved! Something Error or Must be have already Account.</div>
+                    <a href="../index.html" class="btn btn-secondary mt-3">Go Back</a>
+                <?php endif; ?>
+            <?php endif; ?>
+            
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
