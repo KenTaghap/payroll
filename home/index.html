@@ -217,15 +217,10 @@
     <footer>
         <div class="footer-main">
             <center>
-            <h1 style="color:white;">Welcome, <span id="displayName"></span>!</h1>
+            <h1 style="color:white;">Welcome, <span id="displayUsername"></span>!</h1>
             <script>
-                // Retrieve the name from localStorage
-                var name = localStorage.getItem("username");
-        
-                // Display the name on page2.html
-                if (name) {
-                    document.getElementById("displayName").textContent = name;
-                }
+               // Retrieve the username from localStorage and display it
+        document.getElementById("displayUsername").innerText = localStorage.getItem("username") || "Guest";
             </script>
              </center> 
             <div class="container">
