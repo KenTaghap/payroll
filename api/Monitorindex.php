@@ -47,7 +47,84 @@ foreach ($cursor as $document) {
     <title>View Borrowed Books</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        /* Add your existing CSS here */
+          body {
+            font-family: Arial, sans-serif;
+            background-image: url('../home/Monitor/images/1.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+        }
+
+        h1, h4 {
+            text-align: center;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+
+        ul.product-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li.product-item {
+            border: 2px solid white;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .product-details {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 5px 0;
+        }
+
+        .product-details span:first-child {
+            font-weight: bold;
+            flex: 1;
+        }
+
+        .product-info {
+            flex: 2;
+            text-align: left;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            display: block;
+            margin: 20px auto;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
