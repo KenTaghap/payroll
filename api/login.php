@@ -15,9 +15,10 @@ $errorMsg = ""; // Initialize an error message variable
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
+	$id = $_POST["id"];
 
     // Query for the user
-    $query = ["username" => $username, "password" => $password];
+    $query = ["username" => $username, "password" => $password, "id" => $id];
     $user = $collection->findOne($query);
 }
 ?>
