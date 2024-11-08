@@ -160,6 +160,20 @@ foreach ($cursor as $document) {
             <label for="search">Search by Student-ID:</label>
             <input type="text" id="search" name="search" placeholder="Enter student id" value="<?php echo htmlspecialchars($searchTerm); ?>">
             <input type="submit" value="Search">
+            
+            <center>
+				<h4 style="color:white;">Your personal Info,&nbsp; &nbsp;
+				<input type="text" name="username" id="username"  readonly></h4>
+				<script>
+					// Retrieve the name from localStorage
+					var name = localStorage.getItem("username");
+			
+					// Display the name on page2.html
+					if (name) {
+						document.getElementById("username").value = name;
+					}
+				</script>
+				</center>
         </form>
 
         <ul class="product-list">
