@@ -73,15 +73,10 @@ try {
 				<form class="form-detail" action="myAccindex.php" method="POST">
 				<center>
 				<h4 style="color:white;">Your personal Info,&nbsp; &nbsp;
-				<input type="text" name="username" id="username"  readonly></h4>
+				<input type="text" name="displayUsername" id="displayUsername"  readonly></h4>
 				<script>
-					// Retrieve the name from localStorage
-					var name = localStorage.getItem("username");
-			
-					// Display the name on page2.html
-					if (name) {
-						document.getElementById("username").value = name;
-					}
+					// Retrieve the username from localStorage and display it
+        document.getElementById("displayUsername").innerText = localStorage.getItem("username") || "Guest";
 				</script>
 				</center>
 				
