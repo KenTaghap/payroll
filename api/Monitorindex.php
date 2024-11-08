@@ -135,7 +135,7 @@ foreach ($cursor as $document) {
 
         <!-- Search form -->
         <label for="studentid">Enter Your Student-ID:</label>
-        <input type="text" id="studentid" placeholder="Enter Student ID">
+        <input type="text" id="username" placeholder="Enter Student ID">
 
         <!-- List to display borrowed book data -->
         <ul class="product-list" id="product-list"></ul>
@@ -145,14 +145,14 @@ foreach ($cursor as $document) {
 
     <script>
         // Function to fetch and display borrowed books based on student ID
-        document.getElementById('studentid').addEventListener('input', function() {
-            const studentID = this.value;
-            if (studentID.trim() === '') {
-                document.getElementById('product-list').innerHTML = '';
+        document.getElementById('username').addEventListener('input', function() {
+            const username = this.value;
+            if (username.trim() === '') {
+                document.getElementById('username').innerHTML = '';
                 return;
             }
 
-            fetch(`borrowed_books.php?studentid=${studentID}`)
+            fetch(`borrowed_books.php?username=${username}`)
                 .then(response => response.json())
                 .then(data => {
                     const productList = document.getElementById('product-list');
