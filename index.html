@@ -46,16 +46,13 @@
             <button class="button"  onclick="sendName()">Login Now</button>
             <script>
                   function sendName() {
-                      // Get the value entered in the textbox
-                      var name = document.getElementById("username").value;
-					var id = document.getElementById("id").value;
-					
-                      // Use localStorage to store the name
-                      localStorage.setItem("username", name);
-            document.cookie = `username=${name}`;
-			
-			localStorage.setItem("id", id);
-            document.cookie = `id=${id}`;
+                      // Get the username and student ID from input fields
+            var username = document.getElementById("username").value;
+            var studentId = document.getElementById("id").value;
+
+            // Store them in localStorage
+            localStorage.setItem("username", username);
+            localStorage.setItem("studentId", studentId);
                   }
               </script>
               <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
