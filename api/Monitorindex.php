@@ -154,7 +154,7 @@ foreach ($cursor as $document) {
                 return;
             }
 
-            fetch(`borrowed_books.php?studentid=${username}`)
+            fetch(`Monitorindex.php?studentid=${id}`)
                 .then(response => response.json())
                 .then(data => {
                     const productList = document.getElementById('product-list');
