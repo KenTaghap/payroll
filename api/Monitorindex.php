@@ -1,7 +1,6 @@
 <?php
 require 'vendor/autoload.php'; // Load Composer's autoloader
 error_reporting(E_ERROR | E_PARSE);
-
 // MongoDB connection configuration
 $mongoURI = "mongodb+srv://glycerasiado17:glycerasiado17@cluster0.s9v6t.mongodb.net/admin_login";
 $dbName = "admin_login";
@@ -9,23 +8,28 @@ $collectionName = "borrowed";
 
 // Create a MongoDB client
 $mongoClient = new MongoDB\Client($mongoURI);
+
+// Select database and collection
 $database = $mongoClient->$dbName;
 $collection = $database->$collectionName;
 
-// Check if a search term (student ID) is provided
-$searchTerm = isset($_GET['studentid']) ? $_GET['studentid'] : '';
+// Check if a search term (username) is provided
+$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Find documents based on the search term (student ID)
+// Find documents based on the search term (username)
 $filter = [];
 if (!empty($searchTerm)) {
     $filter = ['studentid' => $searchTerm];
 }
 
+// Find documents matching the filter
 $cursor = $collection->find($filter);
 
-// Fetch data and store it in an array for JSON response
+// Fetch data and store in an array for HTML rendering
 $productData = [];
 foreach ($cursor as $document) {
+  
+
     $productData[] = [
         'studentid' => $document->studentid,
         'bookid' => $document->bookid,
@@ -33,15 +37,11 @@ foreach ($cursor as $document) {
         'student' => $document->student,
         'exp' => $document->exp,
         'borrowed' => $document->borrowed,
+      
     ];
 }
 
-// Return JSON response
-header('Content-Type: application/json');
-echo json_encode($productData);
-
-
-
+?>
 <!DOCTYPE html>
 <html>
 <head>
