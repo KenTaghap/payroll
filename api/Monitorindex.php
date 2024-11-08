@@ -1,6 +1,7 @@
 <?php
 require 'vendor/autoload.php'; // Load Composer's autoloader
 error_reporting(E_ERROR | E_PARSE);
+
 // MongoDB connection configuration
 $mongoURI = "mongodb+srv://glycerasiado17:glycerasiado17@cluster0.s9v6t.mongodb.net/admin_login";
 $dbName = "admin_login";
@@ -8,40 +9,38 @@ $collectionName = "borrowed";
 
 // Create a MongoDB client
 $mongoClient = new MongoDB\Client($mongoURI);
-
-// Select database and collection
 $database = $mongoClient->$dbName;
 $collection = $database->$collectionName;
 
 // Check if a search term (username) is provided
-$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+$searchTerm = isset($_GET['username']) ? $_GET['username'] : '';
 
 // Find documents based on the search term (username)
 $filter = [];
 if (!empty($searchTerm)) {
-    $filter = ['studentid' => $searchTerm];
+    $filter = ['username' => $searchTerm];
 }
 
-// Find documents matching the filter
 $cursor = $collection->find($filter);
 
-// Fetch data and store in an array for HTML rendering
+// Fetch data and store it in an array for JSON response
 $productData = [];
 foreach ($cursor as $document) {
-  
-
     $productData[] = [
-        'studentid' => $document->studentid,
+        'username' => $document->username,
         'bookid' => $document->bookid,
         'booktitle' => $document->booktitle,
         'student' => $document->student,
         'exp' => $document->exp,
         'borrowed' => $document->borrowed,
-      
     ];
 }
 
-?>
+// Return JSON response
+header('Content-Type: application/json');
+echo json_encode($productData);
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,8 +133,8 @@ foreach ($cursor as $document) {
         <h1>View Borrowed Books</h1>
 
         <!-- Search form -->
-        <label for="studentid">Enter Your Student-ID:</label>
-        <input type="text" id="username" placeholder="Enter Student ID">
+        <label for="username">Enter Your Username:</label>
+        <input type="text" id="username" placeholder="Enter Username">
 
         <!-- List to display borrowed book data -->
         <ul class="product-list" id="product-list"></ul>
@@ -144,11 +143,11 @@ foreach ($cursor as $document) {
     </div>
 
     <script>
-        // Function to fetch and display borrowed books based on student ID
+        // Function to fetch and display borrowed books based on username
         document.getElementById('username').addEventListener('input', function() {
             const username = this.value;
             if (username.trim() === '') {
-                document.getElementById('username').innerHTML = '';
+                document.getElementById('product-list').innerHTML = '';
                 return;
             }
 
@@ -165,7 +164,7 @@ foreach ($cursor as $document) {
                             const productItem = document.createElement('li');
                             productItem.classList.add('product-item');
                             productItem.innerHTML = `
-                                <div class="product-details"><span>StudentID:</span><span class="product-info">${product.studentid}</span></div>
+                                <div class="product-details"><span>Username:</span><span class="product-info">${product.username}</span></div>
                                 <div class="product-details"><span>BookID:</span><span class="product-info">${product.bookid}</span></div>
                                 <div class="product-details"><span>Book Title:</span><span class="product-info">${product.booktitle}</span></div>
                                 <div class="product-details"><span>Name:</span><span class="product-info">${product.student}</span></div>
