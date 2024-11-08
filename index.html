@@ -30,6 +30,10 @@
         <div class="form login_form">
           <form action="api/login.php" method="POST">
             <h2>Login</h2>
+			<div class="input_box">
+              <input type="text" name="id" id="id" placeholder="Enter your Student-ID" required />
+              <i class="uil uil-envelope-alt email"></i>
+            </div>
             <div class="input_box">
               <input type="text" name="username" id="username" placeholder="Enter your username" required />
               <i class="uil uil-envelope-alt email"></i>
@@ -44,10 +48,14 @@
                   function sendName() {
                       // Get the value entered in the textbox
                       var name = document.getElementById("username").value;
-          
+					var id = document.getElementById("id").value;
+					
                       // Use localStorage to store the name
                       localStorage.setItem("username", name);
             document.cookie = `username=${name}`;
+			
+			localStorage.setItem("id", id);
+            document.cookie = `id=${id}`;
                   }
               </script>
               <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
