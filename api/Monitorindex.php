@@ -76,7 +76,7 @@ try {
 				 <input type="text" name="studentid" id="studentid" readonly />
     <script>
         // Retrieve the username from localStorage and display it in the input field
-        document.getElementById("studentid").value = localStorage.getItem("studentid") || "Guest";
+        document.getElementById("studentid").value = localStorage.getItem("studentid") || "none";
     </script>
 
 					<div class="tabcontent" id="sign-up">
