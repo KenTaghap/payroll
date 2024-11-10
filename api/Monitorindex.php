@@ -73,7 +73,7 @@ try {
 				<form class="form-detail" action="Monitorindex.php" method="POST">
 				<center>
 				<h4 style="color:white;">Your Student-ID,&nbsp; &nbsp;
-				 <input type="text" name="studentid" id="studentid" />
+				 <input type="text" name="studentid" id="studentid" readonly/>
     <script>
         // Retrieve the username from localStorage and display it in the input field
         document.getElementById("studentid").value = localStorage.getItem("studentId") || "none";
