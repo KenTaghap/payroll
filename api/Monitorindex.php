@@ -55,7 +55,7 @@ foreach ($cursor as $document) {
         /* Your existing CSS styles */
         body {
             font-family: Arial, sans-serif;
-            background-image: url('../farmers/Monitor/images/manipulation-wallpaper-preview.jpg');
+            background-image: url('../home/Monitor/images/1.jpg.jpg');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -158,12 +158,12 @@ foreach ($cursor as $document) {
         <!-- Search form -->
         <form action="" method="GET">
             <label for="search">Student ID:</label>
-            <input type="text" id="displayStudentId" name="displayStudentId" placeholder="Student ID" value="<?php echo htmlspecialchars($searchTerm); ?>">
+            <input type="text" id="studentid" name="studentid" placeholder="Student ID" value="<?php echo htmlspecialchars($searchTerm); ?>">
             <input type="submit" value="Display">
 
             <script>
         // Retrieve the student ID from localStorage and display it in the input field
-        document.getElementById("displayStudentId").value = localStorage.getItem("studentId") || "Not Available";
+        document.getElementById("studentid").value = localStorage.getItem("studentId") || "Not Available";
     </script>
 
         </form>
@@ -205,7 +205,7 @@ foreach ($cursor as $document) {
    
         </ul>
 
-        <button><a href="../farmers/index.html">Back to Homepage</a></button>
+        <button><a href="../home/index.html">Back to Homepage</a></button>
     </div>
 </body>
 </html>
