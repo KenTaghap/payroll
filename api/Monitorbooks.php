@@ -183,19 +183,7 @@ foreach ($cursor as $document) {
                         <span>bookID:</span>
                         &nbsp;&nbsp;
                         <span class="product-info"><?php echo $product['book_id']; ?></span>
-                    </div>
-                    <div class="product-details">
-                        <div class="product-image">
-    <?php
-    if (!empty($product['image'])) {
-        echo '<img src="' . $product['image'] . '" class="product-image" alt="Product Image">';
-    } else {
-        echo 'Image not available';
-    }
-    ?>
-</div>
-
-                    </div>
+                    </div>     
                     <div class="product-details">
                         <span>Title:</span>
                         &nbsp;&nbsp;
