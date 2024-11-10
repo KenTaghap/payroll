@@ -4,7 +4,7 @@ error_reporting(E_ERROR | E_PARSE);
 // MongoDB connection configuration
 $mongoURI = "mongodb+srv://glycerasiado17:glycerasiado17@cluster0.s9v6t.mongodb.net/admin_login";
 $dbName = "admin_login";
-$collectionName = "borrowed";
+$collectionName = "books";
 
 
 // Create a MongoDB client
@@ -206,7 +206,7 @@ foreach ($cursor as $document) {
             <?php endforeach; ?>
         </ul>
 
-        <button><a href="../farmers/index.html">Back to Homepage</a></button>
+        <button><a href="../home/index.html">Back to Homepage</a></button>
     </div>
 </body>
 </html>
