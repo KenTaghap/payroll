@@ -1,211 +1,135 @@
 <?php
 require 'vendor/autoload.php';
 error_reporting(E_ERROR | E_PARSE);
+use MongoDB\Client;
 
-// MongoDB connection configuration
-$mongoURI = "mongodb+srv://glycerasiado17:glycerasiado17@cluster0.s9v6t.mongodb.net/admin_login";
-$dbName = "admin_login";
-$collectionName = "borrowed";
+// Replace with your MongoDB Atlas connection string
+$connectionString = "mongodb+srv://glycerasiado17:glycerasiado17@cluster0.s9v6t.mongodb.net/admin_login";
 
-// Create a MongoDB client
-$mongoClient = new MongoDB\Client($mongoURI);
+$studentid = "";
+$bookid = "";
+$booktitle = "";
+$student = "";
+$exp = "";
+$borrowed = "";
 
-// Select database and collection
-$database = $mongoClient->$dbName;
-$collection = $database->$collectionName;
 
-// Check if a search term (studentid) is provided
-$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+try {
+    $client = new Client($connectionString);
+    $collection = $client->admin_login->borrowed; // Replace with your database and collection names
 
-// Find documents based on the search term (studentid)
-$filter = [];
-if (!empty($searchTerm)) {
-    $filter = ['studentid' => $searchTerm];
-}
+    if (isset($_POST['studentid'])) {
+        $studentid = $_POST['studentid'];
 
-// Find documents matching the filter
-$cursor = $collection->find($filter);
+        $filter = ['studentid' => $studentid];
+        $userInfo = $collection->findOne($filter);
 
-// Fetch data and store in an array for HTML rendering
-$productData = [];
-foreach ($cursor as $document) {
-    $productData[] = [
-        'studentid' => $document->studentid,
-        'bookid' => $document->bookid,
-        'booktitle' => $document->booktitle,
-        'student' => $document->student,
-        'exp' => $document->exp,
-        'borrowed' => $document->borrowed,
-    ];
+        if ($userInfo) {
+            $studentid = $userInfo['studentid'];
+            $bookid = $userInfo['bookid'];
+            $booktitle = $userInfo['booktitle'];
+            $student = $userInfo['student'];
+            $exp = $userInfo['exp'];
+            $borrowed = $userInfo['borrowed'];
+           
+        } else {
+            $studentid = "User not found";
+            // Set other fields to default or empty values
+        }
+    } else {
+        // Handle case where 'Username' is not set in $_POST
+        $studentid = "Please Click Display Button.";
+        // Set other fields to default or empty values
+    }
+} catch (MongoDB\Driver\Exception\Exception $e) {
+    // Handle MongoDB exceptions
+    $studentid = "Error retrieving user information";
+    // Set other fields to default or empty values
 }
 ?>
-
-
-
 
 
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Farmers Monitor</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <style>
-        /* Your existing CSS styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('../home/Monitor/images/1.jpg');
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-            margin: 0;
-            padding: 20px;
-            color: white;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-        }
-
-        h1, h4 {
-            text-align: center;
-        }
-
-        form {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        label {
-            margin-right: 10px;
-        }
-
-        input[type="text"] {
-            padding: 5px;
-            border-radius: 5px;
-            border: none;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        input[type="submit"] {
-            padding: 5px 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        ul.product-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li.product-item {
-            border: 2px solid white;
-            margin-bottom: 20px;
-            padding: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .product-image {
-            max-width: 100px;
-            margin-right: 20px;
-            margin-bottom: 10px;
-        }
-
-        .product-details {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .product-details span {
-            font-weight: bold;
-        }
-
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            display: block;
-            margin: 20px auto;
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        button a {
-            color: white;
-            text-decoration: none;
-        }
-    </style>
+	<meta charset="utf-8">
+	<title>Farmers Account</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="../home/myAcc/css/sourcesanspro-font.css">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="../home/myAcc/css/style.css"/>
 </head>
-<body>
-    <div class="container">
-        <h1>Product List</h1>
-        
-        <!-- Search form -->
-        <form action="" method="GET">
-            <label for="search">Student ID:</label>
-            <input type="text" id="studentid" name="studentid" placeholder="Student ID" value="<?php echo htmlspecialchars($searchTerm); ?>">
-            <input type="submit" value="Display">
-
-            <script>
-        // Retrieve the student ID from localStorage and display it in the input field
-        document.getElementById("studentid").value = localStorage.getItem("studentId") || "Not Available";
+<body class="form-v8">
+	
+	<div class="page-content">
+		<div class="form-v8-content">
+			
+			<div class="form-right">
+				
+					
+				
+				<form class="form-detail" action="Monitorindex.php" method="POST">
+				<center>
+				<h4 style="color:white;">Your Student-ID,&nbsp; &nbsp;
+				 <input type="text" name="studentid" id="studentid" readonly />
+    <script>
+        // Retrieve the username from localStorage and display it in the input field
+        document.getElementById("studentid").value = localStorage.getItem("studentid") || "Guest";
     </script>
 
-        </form>
-        
-        <ul class="product-list">
-           <?php foreach ($productData as $product) : ?>
-                <li class="product-item">
-                    <div class="product-details">
-                        <span>Student-ID:</span>
-                        &nbsp;&nbsp;
-                        <span class="product-info"><?php echo $product['studentid']; ?></span>
-                    </div>
-                    <div class="product-details">
-                        <span>Book-id:</span>
-                        &nbsp;&nbsp;
-                        <span class="product-info"><?php echo $product['bookid']; ?></span>
-                    </div>
-                    <div class="product-details">
-                        <span>Book Title:</span>
-                        &nbsp;&nbsp;
-                        <span class="product-info"><?php echo $product['booktitle']; ?></span>
-                    </div>
-                    <div class="product-details">
-                        <span>Student Name:</span>
-                        &nbsp;&nbsp;
-                        <span class="product-info"><?php echo $product['student']; ?></span>
-                    </div>
-                    <div class="product-details">
-                        <span>Expiry:</span>
-                        &nbsp;&nbsp;
-                        <span class="product-info"><?php echo $product['exp']; ?></span>
-                    </div>
-                    <div class="product-details">
-                        <span>borrowed:</span>
-                        &nbsp;&nbsp;
-                        <span class="product-info"><?php echo $product['borrowed']; ?></span>
-                    </div>
-                </li>
-    <?php endforeach; ?>
-        </ul>
+					<div class="tabcontent" id="sign-up">
+					
+								<p><strong>Student Id:</strong>&nbsp; &nbsp;  <?= $studentid ?></p>
+								<p ><strong>BookID:</strong>&nbsp; &nbsp;  <?= $bookid ?></p>
+								<p><strong>Book Title:</strong>&nbsp; &nbsp;  <?= $booktitle ?></p>
+								<p><strong>Student:</strong>&nbsp; &nbsp;  <?= $student ?></p>
+    							<p><strong>Exp:</strong>&nbsp; &nbsp;  <?= $exp ?></p>
+								<p><strong>Borrowed:</strong>&nbsp; &nbsp;  <?= $borrowed ?></p>
+							
 
-        <button><a href="../home/index.html">Back to Homepage</a></button>
-    </div>
-</body>
+
+								
+								<div class="form-row-last">
+					
+								<input type="submit" name="register" class="register" value="Display">
+						</div>
+								</form>
+								<br>
+								<br>
+								<br>
+						<div class="form-row-last">
+							<button><a href="../home/index.html" class="register">Back </a></button>
+								<br>
+								<br>
+								<br>
+								
+						</div>
+					</div>
+				
+					
+				
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function openCity(evt, cityName) {
+		    var i, tabcontent, tablinks;
+		    tabcontent = document.getElementsByClassName("tabcontent");
+		    for (i = 0; i < tabcontent.length; i++) {
+		        tabcontent[i].style.display = "none";
+		    }
+		    tablinks = document.getElementsByClassName("tablinks");
+		    for (i = 0; i < tablinks.length; i++) {
+		        tablinks[i].className = tablinks[i].className.replace(" active", "");
+		    }
+		    document.getElementById(cityName).style.display = "block";
+		    evt.currentTarget.className += " active";
+		}
+
+		// Get the element with id="defaultOpen" and click on it
+		document.getElementById("defaultOpen").click();
+	</script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
