@@ -169,7 +169,7 @@ foreach ($cursor as $document) {
         </form>
         
         <ul class="product-list">
-        
+           <?php foreach ($productData as $product) : ?>
                 <li class="product-item">
                     <div class="product-details">
                         <span>Student-ID:</span>
@@ -202,7 +202,7 @@ foreach ($cursor as $document) {
                         <span class="product-info"><?php echo $product['borrowed']; ?></span>
                     </div>
                 </li>
-   
+    <?php endforeach; ?>
         </ul>
 
         <button><a href="../home/index.html">Back to Homepage</a></button>
