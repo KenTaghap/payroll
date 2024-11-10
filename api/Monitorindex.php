@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php'; // Load Composer's autoloader
+require 'vendor/autoload.php';
 error_reporting(E_ERROR | E_PARSE);
 
 // MongoDB connection configuration
@@ -135,6 +135,9 @@ foreach ($cursor as $document) {
         <label for="username">Your Student-ID:</label>
         <input type="text" id="id" placeholder="Enter Student-ID" readonly>
 
+        <!-- Display button -->
+        <button id="display-button">Display Borrowed Books</button>
+
         <!-- List to display borrowed book data -->
         <ul class="product-list" id="product-list"></ul>
 
@@ -142,43 +145,47 @@ foreach ($cursor as $document) {
     </div>
 
     <script>
-        // Load Student-ID from localStorage and display borrowed books
         document.addEventListener('DOMContentLoaded', function() {
+            // Load Student-ID from localStorage
             const studentId = localStorage.getItem('studentId');
             if (studentId) {
                 document.getElementById('id').value = studentId;
-
-                // Fetch and display borrowed books based on student ID
-                fetch(`Monitorindex.php?studentid=${studentId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const productList = document.getElementById('product-list');
-                        productList.innerHTML = '';
-
-                        if (data.length === 0) {
-                            productList.innerHTML = '<li>No records found.</li>';
-                        } else {
-                            data.forEach(product => {
-                                const productItem = document.createElement('li');
-                                productItem.classList.add('product-item');
-                                productItem.innerHTML = `
-                                    <div class="product-details"><span>Username:</span><span class="product-info">${product.student}</span></div>
-                                    <div class="product-details"><span>BookID:</span><span class="product-info">${product.bookid}</span></div>
-                                    <div class="product-details"><span>Book Title:</span><span class="product-info">${product.booktitle}</span></div>
-                                    <div class="product-details"><span>Name:</span><span class="product-info">${product.student}</span></div>
-                                    <div class="product-details"><span>Borrowed:</span><span class="product-info">${product.borrowed}</span></div>
-                                    <div class="product-details"><span>Expiry:</span><span class="product-info">${product.exp}</span></div>
-                                `;
-                                productList.appendChild(productItem);
-                            });
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error fetching data:', error);
-                    });
-            } else {
-                document.getElementById('product-list').innerHTML = '<li>Please enter your Student ID.</li>';
             }
+
+            // Fetch and display borrowed books when "Display" button is clicked
+            document.getElementById('display-button').addEventListener('click', function() {
+                if (studentId) {
+                    fetch(`Monitorindex.php?studentid=${studentId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const productList = document.getElementById('product-list');
+                            productList.innerHTML = '';
+
+                            if (data.length === 0) {
+                                productList.innerHTML = '<li>No records found.</li>';
+                            } else {
+                                data.forEach(product => {
+                                    const productItem = document.createElement('li');
+                                    productItem.classList.add('product-item');
+                                    productItem.innerHTML = `
+                                        <div class="product-details"><span>Username:</span><span class="product-info">${product.student}</span></div>
+                                        <div class="product-details"><span>BookID:</span><span class="product-info">${product.bookid}</span></div>
+                                        <div class="product-details"><span>Book Title:</span><span class="product-info">${product.booktitle}</span></div>
+                                        <div class="product-details"><span>Name:</span><span class="product-info">${product.student}</span></div>
+                                        <div class="product-details"><span>Borrowed:</span><span class="product-info">${product.borrowed}</span></div>
+                                        <div class="product-details"><span>Expiry:</span><span class="product-info">${product.exp}</span></div>
+                                    `;
+                                    productList.appendChild(productItem);
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching data:', error);
+                        });
+                } else {
+                    document.getElementById('product-list').innerHTML = '<li>Please enter your Student ID.</li>';
+                }
+            });
         });
     </script>
 </body>
