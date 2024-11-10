@@ -40,16 +40,22 @@ foreach ($cursor as $document) {
 }
 ?>
 
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>View Borrowed Books</title>
+    <title>Farmers Monitor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
-          body {
+        /* Your existing CSS styles */
+        body {
             font-family: Arial, sans-serif;
-            background-image: url('../home/Monitor/images/1.jpg');
+            background-image: url('../farmers/Monitor/images/manipulation-wallpaper-preview.jpg');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -62,12 +68,17 @@ foreach ($cursor as $document) {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
         }
 
         h1, h4 {
             text-align: center;
+        }
+
+        form {
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         label {
@@ -80,8 +91,15 @@ foreach ($cursor as $document) {
             border: none;
             width: 100%;
             max-width: 300px;
-            display: block;
-            margin: 0 auto 20px auto;
+        }
+
+        input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
         ul.product-list {
@@ -92,101 +110,102 @@ foreach ($cursor as $document) {
         li.product-item {
             border: 2px solid white;
             margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-image {
+            max-width: 100px;
+            margin-right: 20px;
+            margin-bottom: 10px;
         }
 
         .product-details {
+            margin-bottom: 10px;
             display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 5px 0;
+            align-items: center;
         }
 
-        .product-details span:first-child {
+        .product-details span {
             font-weight: bold;
-            flex: 1;
-        }
-
-        .product-info {
-            flex: 2;
-            text-align: left;
         }
 
         button {
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
             display: block;
             margin: 20px auto;
-            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button a {
+            color: white;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>View Borrowed Books</h1>
-
+        <h1>Product List</h1>
+        
         <!-- Search form -->
-        <label for="username">Your Student-ID:</label>
-        <input type="text" id="id" placeholder="Enter Student-ID" readonly>
+        <form action="" method="GET">
+            <label for="search">Student ID:</label>
+            <input type="text" id="displayStudentId" name="displayStudentId" placeholder="Student ID" value="<?php echo htmlspecialchars($searchTerm); ?>">
+            <input type="submit" value="Display">
 
-        <!-- Display button -->
-        <button id="display-button">Display Borrowed Books</button>
-
-        <!-- List to display borrowed book data -->
-        <ul class="product-list" id="product-list"></ul>
-
-        <button onclick="window.location.href='../home/index.html'">Back to Homepage</button>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load Student-ID from localStorage
-            const studentId = localStorage.getItem('studentId');
-            if (studentId) {
-                document.getElementById('id').value = studentId;
-            }
-
-            // Fetch and display borrowed books when "Display" button is clicked
-            document.getElementById('display-button').addEventListener('click', function() {
-                if (studentId) {
-                    fetch(`Monitorindex.php?studentid=${studentId}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            const productList = document.getElementById('product-list');
-                            productList.innerHTML = '';
-
-                            if (data.length === 0) {
-                                productList.innerHTML = '<li>No records found.</li>';
-                            } else {
-                                data.forEach(product => {
-                                    const productItem = document.createElement('li');
-                                    productItem.classList.add('product-item');
-                                    productItem.innerHTML = `
-                                        <div class="product-details"><span>Username:</span><span class="product-info">${product.student}</span></div>
-                                        <div class="product-details"><span>BookID:</span><span class="product-info">${product.bookid}</span></div>
-                                        <div class="product-details"><span>Book Title:</span><span class="product-info">${product.booktitle}</span></div>
-                                        <div class="product-details"><span>Name:</span><span class="product-info">${product.student}</span></div>
-                                        <div class="product-details"><span>Borrowed:</span><span class="product-info">${product.borrowed}</span></div>
-                                        <div class="product-details"><span>Expiry:</span><span class="product-info">${product.exp}</span></div>
-                                    `;
-                                    productList.appendChild(productItem);
-                                });
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error fetching data:', error);
-                        });
-                } else {
-                    document.getElementById('product-list').innerHTML = '<li>Please enter your Student ID.</li>';
-                }
-            });
-        });
+            <script>
+        // Retrieve the student ID from localStorage and display it in the input field
+        document.getElementById("displayStudentId").value = localStorage.getItem("studentId") || "Not Available";
     </script>
+
+        </form>
+        
+        <ul class="product-list">
+        
+                <li class="product-item">
+                    <div class="product-details">
+                        <span>Student-ID:</span>
+                        &nbsp;&nbsp;
+                        <span class="product-info"><?php echo $product['studentid']; ?></span>
+                    </div>
+                    <div class="product-details">
+                        <span>Book-id:</span>
+                        &nbsp;&nbsp;
+                        <span class="product-info"><?php echo $product['bookid']; ?></span>
+                    </div>
+                    <div class="product-details">
+                        <span>Book Title:</span>
+                        &nbsp;&nbsp;
+                        <span class="product-info"><?php echo $product['booktitle']; ?></span>
+                    </div>
+                    <div class="product-details">
+                        <span>Student Name:</span>
+                        &nbsp;&nbsp;
+                        <span class="product-info"><?php echo $product['student']; ?></span>
+                    </div>
+                    <div class="product-details">
+                        <span>Expiry:</span>
+                        &nbsp;&nbsp;
+                        <span class="product-info"><?php echo $product['exp']; ?></span>
+                    </div>
+                    <div class="product-details">
+                        <span>borrowed:</span>
+                        &nbsp;&nbsp;
+                        <span class="product-info"><?php echo $product['borrowed']; ?></span>
+                    </div>
+                </li>
+   
+        </ul>
+
+        <button><a href="../farmers/index.html">Back to Homepage</a></button>
+    </div>
 </body>
 </html>
