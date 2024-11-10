@@ -55,7 +55,7 @@ foreach ($cursor as $document) {
         /* Your existing CSS styles */
         body {
             font-family: Arial, sans-serif;
-            background-image: url('../home/Monitor/images/1.jpg.jpg');
+            background-image: url('../home/Monitor/images/1.jpg');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
