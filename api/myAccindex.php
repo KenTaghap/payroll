@@ -73,13 +73,12 @@ try {
 				<form class="form-detail" action="myAccindex.php" method="POST">
 				<center>
 				<h4 style="color:white;">Your personal Info,&nbsp; &nbsp;
-				<input type="text" name="username" id="username"  readonly></h4>
-				<script>
-					// Retrieve the username from localStorage and display it
-        document.getElementById("username").innerText = localStorage.getItem("username") || "Guest";
-				</script>
-				</center>
-				
+				 <input type="text" id="displayUsername" readonly />
+    <script>
+        // Retrieve the username from localStorage and display it in the input field
+        document.getElementById("displayUsername").value = localStorage.getItem("username") || "Guest";
+    </script>
+
 					<div class="tabcontent" id="sign-up">
 					
 								<p><strong>Student Id:</strong>&nbsp; &nbsp;  <?= $userid ?></p>
