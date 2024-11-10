@@ -15,7 +15,7 @@ $database = $mongoClient->$dbName;
 $collection = $database->$collectionName;
 
 // Check if a search term (studentid) is provided
-$searchTerm = isset($_GET['studentid']) ? $_GET['studentid'] : '';
+$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
 
 // Find documents based on the search term (studentid)
 $filter = [];
