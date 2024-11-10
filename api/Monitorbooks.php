@@ -156,7 +156,7 @@ foreach ($cursor as $document) {
 </head>
 <body>
     <div class="container">
-        <h1>Product List</h1>
+        <h1>Books List</h1>
         
         <!-- Search form -->
         <form action="" method="GET">
