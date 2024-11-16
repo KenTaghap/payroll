@@ -29,21 +29,9 @@ $cursor = $collection->find($filter);
 // Fetch data and store in an array for HTML rendering
 $productData = [];
 foreach ($cursor as $document) {
-    // Check if 'Data' contains a base64 string or URL
-    $imageData = $document->Data; // Change 'Data' to the actual field name storing the image data
-    
-    // Assuming 'Data' contains base64-encoded string without the prefix 'data:image/jpeg;base64,'
-    // Add the prefix if needed for proper display
-    $imageSrc = '';
-    if (!empty($imageData)) {
-        if (strpos($imageData, 'http') === 0) {
-            // It's a URL
-            $imageSrc = $imageData;
-        } else {
-            // Assume it's base64 encoded string
-            $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-        }
-    }
+  // Assuming 'Data' field contains the binary image data
+  $imageData = $document->Data; // Change 'Data' to your actual field name
+  $base64Image = base64_encode($imageData); // Convert binary data to base64
 
     $productData[] = [
         'book_id' => $document->book_id,
@@ -183,6 +171,17 @@ foreach ($cursor as $document) {
                         <span>bookID:</span>
                         &nbsp;&nbsp;
                         <span class="product-info"><?php echo $product['book_id']; ?></span>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-image">
+                            <?php
+                            if (isset($product['image']) && !empty($product['image'])) {
+                                echo '<img src="data:image/jpeg;base64,' . $product['image'] . '" class="product-image" alt="Product Image">';
+                            } else {
+                                echo 'Image not available';
+                            }
+                            ?>
+                        </div>
                     </div>     
                     <div class="product-details">
                         <span>Title:</span>
