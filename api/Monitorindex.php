@@ -130,8 +130,12 @@ foreach ($cursor as $document) {
 
         <!-- Search form -->
         <form action="" method="GET">
-            <input type="text" name="search" placeholder="Search by Book ID">
-            <input type="submit" value="Search">
+            <input type="text" name="studentid" id="studentid" readonly/>
+             <script>
+        // Retrieve the username from localStorage and display it in the input field
+        document.getElementById("studentid").value = localStorage.getItem("studentId") || "none";
+    </script>
+            <input type="submit" value="Display">
         </form>
 
         <!-- Display books -->
