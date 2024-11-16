@@ -39,7 +39,7 @@ foreach ($cursor as $document) {
         'author' => $document->author,
         'published' => $document->published,
         'status' => $document->status,
-        'image' => $imageSrc, // Add image source to the array
+        'image' => $base64Image,
     ];
 }
 
