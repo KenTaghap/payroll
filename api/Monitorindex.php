@@ -20,7 +20,7 @@ $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
 // Filter for searching by book_id
 $filter = [];
 if (!empty($searchTerm)) {
-    $filter = ['book_id' => $searchTerm]; // Only filter by book_id if provided
+    $filter = ['studentid' => $searchTerm]; // Only filter by book_id if provided
 }
 
 // Find documents matching the filter
