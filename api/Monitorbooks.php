@@ -29,7 +29,7 @@ $cursor = $collection->find($filter);
 // Fetch data and store in an array for HTML rendering
 $productData = [];
 foreach ($cursor as $document) {
-    $imageData = isset($document->Data) ? $document->Data : null; // Replace 'Data' with your actual image field name
+    $imageData = isset($document->image) ? $document->image : null; // Replace 'image' with your actual field name
     $base64Image = $imageData ? base64_encode($imageData) : null; // Convert binary data to base64 if it exists
 
     $productData[] = [
