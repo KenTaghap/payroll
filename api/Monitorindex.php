@@ -15,7 +15,7 @@ $database = $mongoClient->$dbName;
 $collection = $database->$collectionName;
 
 // Check if a search term (book ID) is provided
-$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+$searchTerm = isset($_GET['studentid']) ? $_GET['studentid'] : '';
 
 // Filter for searching by book_id
 $filter = [];
@@ -133,7 +133,7 @@ if (empty($searchTerm)) {
 
         <!-- Search form -->
         <form action="" method="GET">
-            <input type="text" name="studentid" id="studentid" placeholder="Enter Book ID to search" value="<?php echo htmlspecialchars($searchTerm); ?>" readonly/>
+            <input type="text" name="studentid" id="studentid" placeholder="Enter Book ID to search" value="<?php echo htmlspecialchars($searchTerm); ?>" />
              <script>
         // Retrieve the username from localStorage and display it in the input field
         document.getElementById("studentid").value = localStorage.getItem("studentId") || "none";
