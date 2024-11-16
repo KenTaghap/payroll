@@ -38,6 +38,11 @@ foreach ($cursor as $document) {
         'borrowed' => $document->borrowed,
     ];
 }
+
+// If no search term is provided, initialize $productData as empty to display "No books found"
+if (empty($searchTerm)) {
+    $productData = []; // Make sure no data is fetched by default if no search term is provided
+}
 ?>
 
 <!DOCTYPE html>
@@ -128,7 +133,11 @@ foreach ($cursor as $document) {
 
         <!-- Search form -->
         <form action="" method="GET">
-            <input type="text" name="search" id="search" placeholder="Enter Book ID to search" value="<?php echo htmlspecialchars($searchTerm); ?>"/>
+            <input type="text" name="studentid" id="studentid" placeholder="Enter Book ID to search" value="<?php echo htmlspecialchars($searchTerm); ?>" readonly/>
+             <script>
+        // Retrieve the username from localStorage and display it in the input field
+        document.getElementById("studentid").value = localStorage.getItem("studentId") || "none";
+    </script>
             <input type="submit" value="Display">
         </form>
 
