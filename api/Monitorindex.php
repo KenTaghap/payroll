@@ -29,8 +29,6 @@ $cursor = $collection->find($filter);
 // Fetch data and store in an array for HTML rendering
 $productData = [];
 foreach ($cursor as $document) {
-   
-
     $productData[] = [
         'studentid' => $document->studentid,
         'bookid' => $document->bookid,
@@ -130,11 +128,7 @@ foreach ($cursor as $document) {
 
         <!-- Search form -->
         <form action="" method="GET">
-            <input type="text" name="studentid" id="studentid" readonly/>
-             <script>
-        // Retrieve the username from localStorage and display it in the input field
-        document.getElementById("studentid").value = localStorage.getItem("studentId") || "none";
-    </script>
+            <input type="text" name="search" id="search" placeholder="Enter Book ID to search" value="<?php echo htmlspecialchars($searchTerm); ?>"/>
             <input type="submit" value="Display">
         </form>
 
@@ -150,8 +144,7 @@ foreach ($cursor as $document) {
                             &nbsp;&nbsp;
                             <span class="product-info"><?php echo htmlspecialchars($product['studentid']); ?></span>
                         </div>
-                      
-                        <div class="product-details">
+                       <div class="product-details">
                             <span>Book ID:</span>
                             &nbsp;&nbsp;
                             <span class="product-info"><?php echo htmlspecialchars($product['bookid']); ?></span>
