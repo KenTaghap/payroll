@@ -31,10 +31,10 @@ $productData = [];
 foreach ($cursor as $document) {
     $productData[] = [
         'id' => $document->book_id,
-        'name' => $document->title,
-        'section' => $document->author,
-        'book' => $document->published,
-        'date' => $document->status,
+        'name' => $document->name,
+        'section' => $document->section,
+        'book' => $document->book,
+        'date' => $document->date,
     ];
 }
 ?>
