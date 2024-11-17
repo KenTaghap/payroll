@@ -55,11 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php if ($user): ?>
                     <!-- Success message -->
                     <div class="alert alert-success">Successful!</div>
-                    <a href="../../index.html" class="btn btn-primary mt-3">Go to Home</a>
+                    <a href="../home/index.html" class="btn btn-primary mt-3">Go to Home</a>
                 <?php else: ?>
                     <!-- Error message -->
                     <div class="alert alert-danger">Failed!</div>
-                    <a href="../../index.html" class="btn btn-secondary mt-3">Go Back</a>
+                    <a href="../home/index.html" class="btn btn-secondary mt-3">Go Back</a>
                 <?php endif; ?>
             <?php endif; ?>
             
