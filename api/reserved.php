@@ -8,7 +8,7 @@ error_reporting(E_ERROR | E_PARSE);
 // Set up MongoDB connection
 $client = new MongoDB\Client('mongodb+srv://glycerasiado17:glycerasiado17@cluster0.s9v6t.mongodb.net/admin_login');
 $database = $client->selectDatabase('admin_login');
-$collection = $database->selectCollection('users');
+$collection = $database->selectCollection('reserved');
 
 $errorMsg = ""; // Initialize an error message variable
 
@@ -55,11 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php if ($user): ?>
                     <!-- Success message -->
                     <div class="alert alert-success">Successful!</div>
-                    <a href="../index.html" class="btn btn-primary mt-3">Go to Home</a>
+                    <a href="../../index.html" class="btn btn-primary mt-3">Go to Home</a>
                 <?php else: ?>
                     <!-- Error message -->
                     <div class="alert alert-danger">Failed!</div>
-                    <a href="../index.html" class="btn btn-secondary mt-3">Go Back</a>
+                    <a href="../../index.html" class="btn btn-secondary mt-3">Go Back</a>
                 <?php endif; ?>
             <?php endif; ?>
             
