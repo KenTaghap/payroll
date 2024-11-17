@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Reservation</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body>
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
+					<div class="booking-form">
+						<div class="form-header">
+							
+						</div>
+						<form action="../../api/reserved.php" method="POST">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<span class="form-label">Student ID</span>
+								<input class="form-control" type="text" name="id" id="id" placeholder="Enter your ID" required>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<span class="form-label">Fullname</span>
+								<input class="form-control" type="text" name="name" id="name" placeholder="Enter your fullname" required>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<span class="form-label">Section</span>
+		`						<input class="form-control" type="text" name="secton" id="section" placeholder="Enter your section" required>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<span class="form-label">Books</span>
+		`						<input class="form-control" type="text" name="book" id="book" placeholder="Enter your Reservation Book" required>
+							</div>
+						</div>
+					</div>		
+							<div class="form-btn">
+								<button class="submit-btn">Reserve Now</button>
+							</div>
+						</form>
+						<br><br>
+						<div class="form-btn">
+						<button class="submit-btn"><a href="../index.html"> Back</a></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
