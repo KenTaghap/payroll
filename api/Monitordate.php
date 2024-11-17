@@ -30,7 +30,7 @@ $cursor = $collection->find($filter);
 $productData = [];
 foreach ($cursor as $document) {
     $productData[] = [
-        'id' => $document->book_id,
+        'id' => $document->id,
         'name' => $document->name,
         'section' => $document->section,
         'book' => $document->book,
@@ -123,11 +123,11 @@ foreach ($cursor as $document) {
 </head>
 <body>
     <div class="container">
-        <h1>Date List</h1>
+        <h1>Reservation Date List</h1>
 
         <!-- Search form -->
         <form action="" method="GET">
-            <input type="text" name="search" placeholder="Search by Book ID">
+            <input type="text" name="search" placeholder="Search by Student ID">
             <input type="submit" value="Search">
         </form>
 
