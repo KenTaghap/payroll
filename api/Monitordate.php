@@ -15,12 +15,12 @@ $database = $mongoClient->$dbName;
 $collection = $database->$collectionName;
 
 // Check if a search term (book ID) is provided
-$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+$searchTerm = isset($_GET['studentid']) ? $_GET['studentid'] : '';
 
 // Filter for searching by book_id
 $filter = [];
 if (!empty($searchTerm)) {
-    $filter = ['id' => $searchTerm];
+    $filter = ['id' => $searchTerm]; // Only filter by book_id if provided
 }
 
 // Find documents matching the filter
@@ -36,6 +36,11 @@ foreach ($cursor as $document) {
         'book' => $document->book,
         'date' => $document->date,
     ];
+}
+
+// If no search term is provided, initialize $productData as empty to display "No books found"
+if (empty($searchTerm)) {
+    $productData = []; // Make sure no data is fetched by default if no search term is provided
 }
 ?>
 
@@ -127,18 +132,22 @@ foreach ($cursor as $document) {
 
         <!-- Search form -->
         <form action="" method="GET">
-            <input type="text" name="search" placeholder="Search by Student ID">
-            <input type="submit" value="Search">
+            <input type="text" name="studentid" id="studentid" placeholder="Enter Student ID to search" value="<?php echo htmlspecialchars($searchTerm); ?>" readonly/>
+             <script>
+        // Retrieve the username from localStorage and display it in the input field
+        document.getElementById("studentid").value = localStorage.getItem("studentId") || "none";
+    </script>
+            <input type="submit" value="Display">
         </form>
 
         <!-- Display books -->
         <ul class="product-list">
             <?php if (empty($productData)): ?>
-                <li class="product-item">No Dates found.</li>
+                <li class="product-item">No books found.</li>
             <?php else: ?>
                 <?php foreach ($productData as $product) : ?>
                     <li class="product-item">
-                        <div class="product-details">
+                    <div class="product-details">
                             <span>Student ID:</span>
                             &nbsp;&nbsp;
                             <span class="product-info"><?php echo htmlspecialchars($product['id']); ?></span>
